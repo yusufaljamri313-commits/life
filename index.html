@@ -11,7 +11,8 @@
     <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@300;400;500;700;800&display=swap"
+    <link
+        href="https://fonts.googleapis.com/css2?family=Tajawal:wght@300;400;500;700;800&family=Outfit:wght@300;400;600;800&display=swap"
         rel="stylesheet">
     <!-- Font Awesome -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
@@ -26,6 +27,10 @@
             --transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
         }
 
+        [data-lang="en"] {
+            font-family: 'Outfit', sans-serif;
+        }
+
         * {
             margin: 0;
             padding: 0;
@@ -38,34 +43,29 @@
             color: var(--text);
             line-height: 1.6;
             overflow-x: hidden;
-            height: 100vh;
+            min-height: 100vh;
         }
 
-        /* --- Global Layout --- */
         .container {
             max-width: 1100px;
             margin: 0 auto;
             padding: 0 5%;
-            height: 100%;
+            min-height: 100vh;
             display: flex;
             flex-direction: column;
         }
 
-        /* --- Individual Page Sections --- */
         .page {
             display: none;
-            /* Hide by default */
             padding: 40px 0;
-            animation: slideIn 0.6s ease-out forwards;
+            animation: fadeIn 0.6s ease-out forwards;
             flex-grow: 1;
         }
 
         .page.active {
             display: block;
-            /* Show active page */
         }
 
-        /* --- Header --- */
         header {
             padding: 20px 0;
             display: flex;
@@ -78,25 +78,27 @@
             height: 60px;
             width: auto;
             border-radius: 15px;
-            /* نعم حواف الشعار */
+            cursor: pointer;
             transition: var(--transition);
         }
 
-        .logo-img:hover {
-            transform: scale(1.05);
+        nav {
+            display: flex;
+            align-items: center;
+            gap: 20px;
         }
 
         nav ul {
             display: flex;
             list-style: none;
-            gap: 30px;
+            gap: 20px;
         }
 
         nav a {
             text-decoration: none;
             color: var(--primary);
             font-weight: 700;
-            font-size: 1.1rem;
+            font-size: 1rem;
             transition: var(--transition);
             cursor: pointer;
             position: relative;
@@ -113,7 +115,23 @@
             border-radius: 5px;
         }
 
-        /* --- Hero Section --- */
+        .lang-switch {
+            background: var(--primary);
+            color: var(--bg);
+            border: none;
+            padding: 5px 12px;
+            border-radius: 20px;
+            cursor: pointer;
+            font-weight: 700;
+            font-size: 0.85rem;
+            transition: var(--transition);
+        }
+
+        .lang-switch:hover {
+            opacity: 0.8;
+            transform: scale(1.05);
+        }
+
         .hero {
             text-align: center;
             padding: 60px 0;
@@ -123,7 +141,6 @@
             max-width: 250px;
             margin-bottom: 30px;
             border-radius: 25px;
-            /* نعم حواف الشعار */
             box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
         }
 
@@ -134,7 +151,32 @@
             letter-spacing: 2px;
         }
 
-        /* --- About Section --- */
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 25px;
+            margin-top: 30px;
+        }
+
+        .portfolio-item {
+            background: var(--white);
+            border-radius: 25px;
+            overflow: hidden;
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.05);
+            transition: var(--transition);
+        }
+
+        .portfolio-item:hover {
+            transform: translateY(-10px);
+        }
+
+        .portfolio-item img {
+            width: 100%;
+            height: 350px;
+            object-fit: cover;
+            display: block;
+        }
+
         .about-card {
             background: var(--white);
             border-radius: 40px;
@@ -150,45 +192,6 @@
             font-weight: 800;
         }
 
-        /* --- Portfolio Section --- */
-        .grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 25px;
-            margin-top: 30px;
-        }
-
-        .portfolio-item {
-            background: var(--white);
-            border-radius: 25px;
-            overflow: hidden;
-            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.05);
-            transition: var(--transition);
-            opacity: 0;
-            transform: translateY(20px);
-            animation: fadeInUp 0.5s ease forwards;
-        }
-
-        .portfolio-item:nth-child(1) {
-            animation-delay: 0.1s;
-        }
-
-        .portfolio-item:nth-child(2) {
-            animation-delay: 0.2s;
-        }
-
-        .portfolio-item:nth-child(3) {
-            animation-delay: 0.3s;
-        }
-
-        .portfolio-item img {
-            width: 100%;
-            height: 350px;
-            object-fit: cover;
-            display: block;
-        }
-
-        /* --- Social Links --- */
         .socials {
             display: flex;
             justify-content: center;
@@ -197,22 +200,21 @@
         }
 
         .social-btn {
-            width: 60px;
-            height: 60px;
-            border-radius: 20px;
+            width: 55px;
+            height: 55px;
+            border-radius: 18px;
             background: var(--primary);
             color: var(--bg);
             display: flex;
             align-items: center;
             justify-content: center;
-            font-size: 1.8rem;
+            font-size: 1.6rem;
             text-decoration: none;
             transition: var(--transition);
         }
 
         .social-btn:hover {
-            transform: translateY(-10px) rotate(5deg);
-            background: var(--text-light);
+            transform: translateY(-8px);
         }
 
         footer {
@@ -223,35 +225,62 @@
             margin-top: auto;
         }
 
-        /* --- Animations --- */
-        @keyframes slideIn {
+        @keyframes fadeIn {
             from {
                 opacity: 0;
-                transform: translateX(30px);
+                transform: translateY(10px);
             }
 
-            to {
-                opacity: 1;
-                transform: translateX(0);
-            }
-        }
-
-        @keyframes fadeInUp {
             to {
                 opacity: 1;
                 transform: translateY(0);
             }
         }
 
-        /* --- Responsive --- */
+        /* انيميشن تبديل اللغة */
+        .lang-changing {
+            animation: langAnim 0.4s ease-in-out;
+        }
+
+        @keyframes langAnim {
+            0% {
+                opacity: 1;
+                transform: scale(1);
+            }
+
+            50% {
+                opacity: 0.5;
+                transform: scale(0.98);
+            }
+
+            100% {
+                opacity: 1;
+                transform: scale(1);
+            }
+        }
+
         @media (max-width: 768px) {
             header {
                 flex-direction: column;
-                gap: 20px;
+                gap: 15px;
             }
 
-            nav ul {
+            nav {
+                flex-direction: column;
                 gap: 15px;
+            }
+
+            .grid {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 12px;
+            }
+
+            .portfolio-item img {
+                height: 200px;
+            }
+
+            .portfolio-item {
+                border-radius: 15px;
             }
 
             .hero h1 {
@@ -271,10 +300,12 @@
             </div>
             <nav>
                 <ul>
-                    <li><a id="link-home" onclick="showPage('home')" class="active-link">الرئيسية</a></li>
-                    <li><a id="link-portfolio" onclick="showPage('portfolio')">البروتوفليو</a></li>
-                    <li><a id="link-about" onclick="showPage('about')">تعرف علينا</a></li>
+                    <li><a id="link-home" onclick="showPage('home')" class="active-link"
+                            data-i18n="nav-home">الرئيسية</a></li>
+                    <li><a id="link-gallery" onclick="showPage('gallery')" data-i18n="nav-gallery">معرض الصور</a></li>
+                    <li><a id="link-about" onclick="showPage('about')" data-i18n="nav-about">تعرف علينا</a></li>
                 </ul>
+                <button class="lang-switch" onclick="toggleLang()" id="langBtn">English</button>
             </nav>
         </header>
 
@@ -282,36 +313,31 @@
         <section id="home" class="page active">
             <div class="hero">
                 <img src="https://f.top4top.io/p_3699c6t7d1.png" alt="Life Hub Main Logo">
-                <h1>LIFE HUB</h1>
-                <p>جمال الطبيعة، بساطة الحياة.</p>
+                <h1 data-i18n="hero-title">LIFE HUB</h1>
+                <p data-i18n="hero-desc">جمال الطبيعة، بساطة الحياة.</p>
             </div>
         </section>
 
-        <!-- Portfolio Page -->
-        <section id="portfolio" class="page">
-            <h2 class="section-title" style="text-align: center;">البروتوفليو</h2>
+        <!-- Gallery Page -->
+        <section id="gallery" class="page">
+            <h2 class="section-title" style="text-align: center;" data-i18n="gallery-title">معرض الصور</h2>
             <div class="grid">
-                <div class="portfolio-item">
-                    <img src="https://k.top4top.io/p_3699a4pjv1.png" alt="تصميم حياة 1">
-                </div>
-                <div class="portfolio-item">
-                    <img src="https://l.top4top.io/p_3699bf21i2.png" alt="تصميم حياة 2">
-                </div>
-                <div class="portfolio-item">
-                    <img src="https://a.top4top.io/p_369929pii3.png" alt="تصميم حياة 3">
-                </div>
-                <div class="portfolio-item">
-                    <img src="https://b.top4top.io/p_3699bss8q4.png" alt="تصميم حياة 4">
-                </div>
+                <div class="portfolio-item"><img src="https://k.top4top.io/p_3699a4pjv1.png" alt="Design 1"></div>
+                <div class="portfolio-item"><img src="https://l.top4top.io/p_3699bf21i2.png" alt="Design 2"></div>
+                <div class="portfolio-item"><img src="https://a.top4top.io/p_369929pii3.png" alt="Design 3"></div>
+                <div class="portfolio-item"><img src="https://b.top4top.io/p_3699bss8q4.png" alt="Design 4"></div>
+                <div class="portfolio-item"><img src="https://b.top4top.io/p_3699m2bdp1.png" alt="Design 5"></div>
+                <div class="portfolio-item"><img src="https://d.top4top.io/p_36991n2n61.png" alt="Design 6"></div>
+                <div class="portfolio-item"><img src="https://e.top4top.io/p_3699elhjw2.png" alt="Design 7"></div>
             </div>
         </section>
 
         <!-- About Page -->
         <section id="about" class="page">
             <div class="about-card">
-                <h2 class="section-title">تعرف علينا</h2>
-                <p>نحن في حياة نؤمن بأن البساطة هي قمة الرقي. نسعى لتقديم محتوى ملهم وتصاميم تعكس جمال الطبيعة والهدوء
-                    في حياتنا اليومية.</p>
+                <h2 class="section-title" data-i18n="about-title">تعرف علينا</h2>
+                <p data-i18n="about-desc">نحن في حياة نؤمن بأن البساطة هي قمة الرقي. نسعى لتقديم محتوى ملهم وتصاميم تعكس
+                    جمال الطبيعة والهدوء في حياتنا اليومية.</p>
                 <div class="socials">
                     <a href="https://www.tiktok.com/@life.hub.bh?is_from_webapp=1&sender_device=pc" target="_blank"
                         class="social-btn"><i class="fab fa-tiktok"></i></a>
@@ -322,26 +348,78 @@
         </section>
 
         <footer>
-            &copy; 2024 حياة (Life Hub). جميع الحقوق محفوظة.
+            <span data-i18n="footer-copy">&copy; 2026 حياة (Life Hub). جميع الحقوق محفوظة.</span>
         </footer>
     </div>
 
     <script>
+        const translations = {
+            ar: {
+                'nav-home': 'الرئيسية',
+                'nav-gallery': 'معرض الصور',
+                'nav-about': 'تعرف علينا',
+                'hero-title': 'LIFE HUB',
+                'hero-desc': 'جمال الطبيعة، بساطة الحياة.',
+                'gallery-title': 'معرض الصور',
+                'about-title': 'تعرف علينا',
+                'about-desc': 'نحن في حياة نؤمن بأن البساطة هي قمة الرقي. نسعى لتقديم محتوى ملهم وتصاميم تعكس جمال الطبيعة والهدوء في حياتنا اليومية.',
+                'footer-copy': '&copy; 2026 حياة (Life Hub). جميع الحقوق محفوظة.',
+                'lang-btn': 'English'
+            },
+            en: {
+                'nav-home': 'Home',
+                'nav-gallery': 'Gallery',
+                'nav-about': 'About Us',
+                'hero-title': 'LIFE HUB',
+                'hero-desc': 'Beauty of nature, simplicity of life.',
+                'gallery-title': 'Photo Gallery',
+                'about-title': 'About Us',
+                'about-desc': 'In Life, we believe simplicity is the ultimate sophistication. We strive to provide inspiring content and designs reflecting nature\'s beauty.',
+                'footer-copy': '&copy; 2026 Life Hub. All rights reserved.',
+                'lang-btn': 'العربية'
+            }
+        };
+
+        let currentLang = 'ar';
+
+        function toggleLang() {
+            const container = document.querySelector('.container');
+            container.classList.add('lang-changing');
+
+            setTimeout(() => {
+                currentLang = currentLang === 'ar' ? 'en' : 'ar';
+                document.documentElement.lang = currentLang;
+                document.documentElement.dir = currentLang === 'ar' ? 'rtl' : 'ltr';
+                document.body.setAttribute('data-lang', currentLang);
+                updateContent();
+            }, 200);
+
+            setTimeout(() => {
+                container.classList.remove('lang-changing');
+            }, 400);
+        }
+
+        function updateContent() {
+            const elements = document.querySelectorAll('[data-i18n]');
+            elements.forEach(el => {
+                const key = el.getAttribute('data-i18n');
+                el.innerHTML = translations[currentLang][key];
+            });
+            document.getElementById('langBtn').innerText = translations[currentLang]['lang-btn'];
+        }
+
         function showPage(pageId) {
-            // Hide all pages
             const pages = document.querySelectorAll('.page');
             pages.forEach(page => page.classList.remove('active'));
+            document.getElementById(pageId).classList.add('active');
 
-            // Show target page
-            const activePage = document.getElementById(pageId);
-            activePage.classList.add('active');
-
-            // Update nav links
             const links = document.querySelectorAll('nav a');
             links.forEach(link => link.classList.remove('active-link'));
-            document.getElementById('link-' + pageId).classList.add('active-link');
 
-            // Scroll to top
+            // Map gallery back to link-gallery correctly
+            const linkId = pageId === 'gallery' ? 'link-gallery' : 'link-' + pageId;
+            document.getElementById(linkId).classList.add('active-link');
+
             window.scrollTo(0, 0);
         }
     </script>
